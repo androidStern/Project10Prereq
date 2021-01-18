@@ -42,6 +42,27 @@ template<typename T>
 struct Data
 {
     using value_type = T;
+    
+    Data(T d)
+    {
+        data = d;
+    }
+    
+    T operator * (const T& other)
+    {
+        return data * other;
+    }
+    
+    T operator + (const T& other)
+    {
+        return data + other;
+    }
+    
+    operator float()
+    {
+        return data;
+    }
+    
 private:
     T data;
 };
