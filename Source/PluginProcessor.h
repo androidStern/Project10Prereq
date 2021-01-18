@@ -41,9 +41,32 @@
 template<typename T>
 struct Data
 {
+    using value_type = T;
+    
+    Data(T d)
+    {
+        data = d;
+    }
+    
+    T operator * (const T& other)
+    {
+        return data * other;
+    }
+    
+    T operator + (const T& other)
+    {
+        return data + other;
+    }
+    
+    operator float()
+    {
+        return data;
+    }
+    
 private:
     T data;
 };
+
 //==============================================================================
 /**
 */
@@ -89,6 +112,7 @@ public:
 
 private:
     juce::dsp::Oscillator<Data<float>> osc;
+    juce::dsp::Gain<float> gain;
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (Project10PrereqAudioProcessor)
 };
