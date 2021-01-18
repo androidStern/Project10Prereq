@@ -148,9 +148,11 @@ void Project10PrereqAudioProcessor::processBlock (juce::AudioBuffer<float>& buff
     
     for (int sample = 0; sample < numSamples; ++sample)
     {
+        auto output = osc.processSample(0.0) * gain.getGainLinear();
+        
         for (int channel = 0; channel < totalNumOutputChannels; ++channel) {
-            auto x = osc.processSample(0.0);
-            buffer.setSample(channel, sample, x * gain.getGainLinear());
+            
+            buffer.setSample(channel, sample, output);
         }
     }
 }
